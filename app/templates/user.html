@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>User: {{ user.username }}</h1>
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-2">
+            <img src="{{ user.avatar(64) }}" alt="avatar of {{ user.username }}">
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <h5 class="card-title">User: {{ user.username }}</h5>
+                {% if user.about_me %}<p class="card-text">About me: {{ user.about_me }}</p>{% endif %}
+                {% if user.last_seen %}<p class="card-text"><small class="text-muted">Last seen on: {{ user.last_seen }}</small></p>{% endif %}
+                {% if user == current_user %}<a href="{{ url_for('edit_profile') }}" class="card-link">Edit your profile</a>{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% for post in posts %}
-    {% include '_post.html' %}
+{% include '_post.html' %}
 {% endfor %}
 {% endblock content %}
