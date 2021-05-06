@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Hello! {{ current_user.username }}</h1>
+    {% if form %}
+    <form action="", method="POST", novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.post.label(class_='form-label') }}
+            {{ form.post(class_='form-control') }}
+            {% for error in form.post.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class_='btn btn-primary') }}
+    </form>
+    {% endif %}
     {% for post in posts %}
-    <div><p>{{ post.author.username }} said: {{ post.body }}</p></div>
+    {% include '_post.html' %}
     {% endfor %}
 {% endblock %}

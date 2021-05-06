@@ -43,3 +43,8 @@ class EditProfileForm(FlaskForm):
 
 class EmptyForm(FlaskForm):
     submit = SubmitField('Follow/unfollow')
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Say Something', validators=[
+        InputRequired('Please write something'), Length(min=1, max=140)])
+    submit = SubmitField('Send Post')
