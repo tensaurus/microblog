@@ -5,6 +5,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -14,6 +15,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 # login message category (used to add class to flash message) when login_required is called
 login.login_message_category = 'primary'
+mail = Mail(app)
 
 # code to set up emailing system for debug messages
 if not app.debug:

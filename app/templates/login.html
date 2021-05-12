@@ -25,4 +25,5 @@
     {{ form.submit(class_="btn btn-primary") }}
 </form>
 <p>New user?<a href="{{ url_for('register') }}" class="link-primary">Click here to register</a></p>
+<p>Forgot your password?<a href="{{ url_for('reset_password_request') }}">Click here to reset</a></p>
 {% endblock content %}
